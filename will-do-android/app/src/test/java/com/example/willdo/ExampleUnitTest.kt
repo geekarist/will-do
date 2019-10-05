@@ -1,4 +1,4 @@
-package com.example.willdo
+package me.cpele.willdo
 
 import org.junit.Test
 

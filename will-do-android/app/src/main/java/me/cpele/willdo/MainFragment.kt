@@ -1,11 +1,10 @@
-package com.example.willdo.ui.main
+package me.cpele.willdo
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import com.example.willdo.R
+import androidx.lifecycle.ViewModelProviders
 
 class MainFragment : Fragment() {
 

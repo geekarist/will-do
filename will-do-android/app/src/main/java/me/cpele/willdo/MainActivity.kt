@@ -1,8 +1,7 @@
-package com.example.willdo
+package me.cpele.willdo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.willdo.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 

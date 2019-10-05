@@ -1,4 +1,4 @@
-package com.example.willdo.ui.main
+package me.cpele.willdo
 
 import androidx.lifecycle.ViewModel
 
