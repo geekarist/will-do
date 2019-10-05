@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Will Do</string>
+    <string name="menu_note_create">Create a note</string>
 </resources>
