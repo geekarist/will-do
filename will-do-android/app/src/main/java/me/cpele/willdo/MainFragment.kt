@@ -27,14 +27,13 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.main_fragment, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter = GoalAdapter()
+        main_recycler.adapter = adapter
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.state.observe(this, Observer(::render))
     }
 
