@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 /.idea/
+/private/
+google-services.json
