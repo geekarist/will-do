@@ -117,7 +117,7 @@
       [:div
        [:nav.navbar.navbar-light.bg-light.navbar-expand-sm
         [:ul.navbar-nav
-         [:li.nav-item [:a.nav-link {:href (path-for :index)} "Home"]]
+         [:li.nav-item [:a.nav-link.navbar-brand {:href (path-for :index)} "Will Do"]]
          [:li.nav-item [:a.nav-link {:href (path-for :about)} "About"]]]]
        [page]
        [:footer.text-center
