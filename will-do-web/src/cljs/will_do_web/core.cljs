@@ -5,6 +5,7 @@
     [reitit.frontend :as reitit]
     [clerk.core :as clerk]
     [accountant.core :as accountant]
+    [hickory.core :as hick]
     [ajax.core :refer [GET]]))
 
 ;; -------------------------
@@ -89,7 +90,7 @@
   (GET "/about.html"
        {:handler
         (fn [response]
-          (swap! about-state assoc :data (str response)))}))
+          (swap! about-state assoc :data (hick/as-hiccup (hick/parse (str response)))))}))
 
 (defn about-page []
   (fetch-about)
