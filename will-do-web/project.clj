@@ -16,8 +16,8 @@
                   :scope "provided"]
                  [metosin/reitit "0.3.7"]
                  [pez/clerk "1.0.0"]
-                 [venantius/accountant "0.2.5"
-                  :exclusions [org.clojure/tools.reader]]]
+                 [venantius/accountant "0.2.5" :exclusions [org.clojure/tools.reader]]
+                 [cljs-ajax "0.8.0"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]

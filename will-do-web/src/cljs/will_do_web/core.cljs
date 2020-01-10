@@ -4,7 +4,8 @@
     [reagent.session :as session]
     [reitit.frontend :as reitit]
     [clerk.core :as clerk]
-    [accountant.core :as accountant]))
+    [accountant.core :as accountant]
+    [ajax.core :refer [GET]]))
 
 ;; -------------------------
 ;; Routes
@@ -23,6 +24,7 @@
     (:path (reitit/match-by-name router route))))
 
 (path-for :about)
+
 ;; -------------------------
 ;; Page components
 
@@ -73,7 +75,6 @@
                   [:a {:href (path-for :item {:item-id item-id})} "Item: " item-id]])
                (range 1 60))]]))
 
-
 (defn item-page []
   (fn []
     (let [routing-data (session/get :route)
@@ -82,11 +83,20 @@
        [:h1 (str "Item " item " of will-do-web")]
        [:p [:a {:href (path-for :items)} "Back to the list of items"]]])))
 
+(def about-state (atom {:data "Loading..."}))
+
+(defn fetch-about []
+  (GET "/about.html"
+       {:handler
+        (fn [response]
+          (swap! about-state assoc :data (str response)))}))
 
 (defn about-page []
-  (fn [] [:span.main
-          [:h1 "About will-do-web"]]))
-
+  (fetch-about)
+  (fn []
+    [:div.main.container.my-4
+     [:h1 "About Will Do"]
+     [:p (:data @about-state)]]))
 
 ;; -------------------------
 ;; Translate routes -> page components
@@ -97,7 +107,6 @@
     :about #'about-page
     :items #'items-page
     :item #'item-page))
-
 
 ;; -------------------------
 ;; Page mounting component
