@@ -5,8 +5,9 @@
     [reitit.frontend :as reitit]
     [clerk.core :as clerk]
     [accountant.core :as accountant]
+    [ajax.core :refer [GET]]
     [hickory.core :as hick]
-    [ajax.core :refer [GET]]))
+    [markdown.core :as markdown]))
 
 ;; -------------------------
 ;; Routes
@@ -86,14 +87,19 @@
 
 (def about-state (atom {:data "Loading..."}))
 
+(defn conslog [str]
+  (js/console.log str)
+  str)
+
 (defn fetch-about []
-  (GET "/about.html"
+  (GET "/about.md"
        {:handler
         (fn [response]
           (swap! about-state assoc :data
                  (-> response
                      str
-                     hick/parse
+                     markdown/md->html
+                     hick/parse                             ; TODO: Extract body content
                      hick/as-hiccup)))}))
 
 (defn about-page []
