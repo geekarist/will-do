@@ -90,7 +90,11 @@
   (GET "/about.html"
        {:handler
         (fn [response]
-          (swap! about-state assoc :data (hick/as-hiccup (hick/parse (str response)))))}))
+          (swap! about-state assoc :data
+                 (-> response
+                     str
+                     hick/parse
+                     hick/as-hiccup)))}))
 
 (defn about-page []
   (fetch-about)
