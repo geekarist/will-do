@@ -91,6 +91,12 @@
   (js/console.log str)
   str)
 
+(defn md-to-hiccup [md-data]
+  (as-> md-data v
+        (markdown/md->html v)
+        (hick/parse-fragment v)
+        (map hick/as-hiccup v)))
+
 (defn fetch-about []
   (GET "/about.md"
        {:handler
@@ -98,16 +104,14 @@
           (swap! about-state assoc :data
                  (-> response
                      str
-                     markdown/md->html
-                     hick/parse                             ; TODO: Extract body content
-                     hick/as-hiccup)))}))
+                     md-to-hiccup)))}))
 
 (defn about-page []
   (fetch-about)
   (fn []
     [:div.main.container.my-4
      [:h1 "About Will Do"]
-     [:p (:data @about-state)]]))
+     [:div (:data @about-state)]]))
 
 ;; -------------------------
 ;; Translate routes -> page components
